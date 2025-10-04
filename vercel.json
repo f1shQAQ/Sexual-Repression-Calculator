@@ -10,18 +10,8 @@
       "destination": "/api/index"
     },
     {
-      "source": "/((?!static|favicon.svg|api).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/favicon.svg",
-      "dest": "/favicon.svg"
     }
   ]
 }
