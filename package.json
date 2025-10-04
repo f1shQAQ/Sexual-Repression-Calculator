@@ -8,7 +8,7 @@
     "build": "rsbuild build -c rsbuild.config.ts && rsbuild build -c rsbuild.config.server.ts",
     "build:client": "rsbuild build -c rsbuild.config.ts",
     "build:server": "rsbuild build -c rsbuild.config.server.ts",
-    "build:vercel": "npm run build:client",
+    "build:vercel": "rsbuild build -c rsbuild.config.vercel.ts",
     "type-check": "tsc -b --pretty",
     "lint": "tsc -b --pretty",
     "preview": "rsbuild preview",

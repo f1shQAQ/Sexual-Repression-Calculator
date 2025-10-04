@@ -7,5 +7,7 @@ node_modules
 dist
 .rsbuild
 src/server/app.dev.ts
+src/server/app.prod.ts
 rsbuild.config.server.ts
+rsbuild.config.ts
 

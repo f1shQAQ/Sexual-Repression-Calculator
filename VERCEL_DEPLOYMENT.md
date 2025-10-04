@@ -31,11 +31,13 @@ vercel
 
 ### 构建设置
 
-- **Build Command**: `npm run build:client`
+- **Build Command**: `rsbuild build -c rsbuild.config.vercel.ts`
 - **Output Directory**: `dist/web`
 - **Install Command**: `npm install`
 
 这些配置已经在 `vercel.json` 中设置好了。
+
+**注意**：项目使用单独的 `rsbuild.config.vercel.ts` 配置文件用于 Vercel 部署，该配置不包含开发服务器相关的依赖，避免在生产构建时出错。
 
 ### 环境变量
 
@@ -65,8 +67,11 @@ API 路由已经配置为 Serverless Functions：
 ## 本地预览生产构建
 
 ```bash
-# 构建客户端
-npm run build:client
+# 构建客户端（Vercel 配置）
+npm run build:vercel
+
+# 或者直接使用
+rsbuild build -c rsbuild.config.vercel.ts
 
 # 使用 vercel dev 本地测试（需要安装 Vercel CLI）
 vercel dev
@@ -77,6 +82,14 @@ vercel dev
 ### 部署失败
 - 检查构建日志
 - 确保所有依赖都在 `dependencies` 中（不是 `devDependencies`）
+
+### 构建错误："Cannot find module './src/server/app.dev'"
+- 确保使用 `rsbuild.config.vercel.ts` 配置文件
+- 该配置文件不包含开发服务器相关的导入，专门用于生产构建
+
+### 路由配置错误
+- 不要同时使用 `rewrites` 和 `routes`，只使用 `rewrites`
+- Vercel 会自动处理静态文件，不需要额外配置
 
 ### 路由问题
 - 检查 `vercel.json` 中的 rewrites 配置

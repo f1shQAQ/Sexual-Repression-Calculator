@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build:client",
+  "buildCommand": "rsbuild build -c rsbuild.config.vercel.ts",
   "outputDirectory": "dist/web",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
