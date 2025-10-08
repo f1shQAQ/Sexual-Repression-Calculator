@@ -66,7 +66,16 @@ export default function Home() {
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
+          <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+            <Button
+              variant="outline"
+              className="w-full border-orange-500 text-orange-600 hover:bg-orange-50"
+              onClick={() => {
+                window.open('https://kcnyvaj540jn.feishu.cn/share/base/form/shrcnFXbyBDDBdWKbFXj8TGKXme', '_blank');
+              }}
+            >
+              🚨 举报倒卖信息
+            </Button>
             <AlertDialogAction onClick={handleCloseDialog} className="w-full bg-red-600 hover:bg-red-700">
               我已知晓
             </AlertDialogAction>
