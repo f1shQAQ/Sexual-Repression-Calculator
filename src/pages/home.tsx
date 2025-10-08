@@ -36,18 +36,9 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
-  const [showAntiResaleDialog, setShowAntiResaleDialog] = React.useState(false);
-
-  React.useEffect(() => {
-    // 每次打开网站都显示弹窗（使用sessionStorage确保每个会话显示一次）
-    const hasSeenDialogThisSession = sessionStorage.getItem('anti-resale-dialog-seen');
-    if (!hasSeenDialogThisSession) {
-      setShowAntiResaleDialog(true);
-    }
-  }, []);
+  const [showAntiResaleDialog, setShowAntiResaleDialog] = React.useState(true);
 
   const handleCloseDialog = () => {
-    sessionStorage.setItem('anti-resale-dialog-seen', 'true');
     setShowAntiResaleDialog(false);
   };
 
