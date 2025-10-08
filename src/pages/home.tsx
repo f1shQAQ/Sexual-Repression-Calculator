@@ -8,6 +8,15 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { 
   Brain, 
   Clock, 
@@ -22,19 +31,66 @@ import {
   ArrowRight,
   BookOpen,
   Target,
-  History
+  History,
+  AlertCircle
 } from 'lucide-react';
 
 export default function Home() {
+  const [showAntiResaleDialog, setShowAntiResaleDialog] = React.useState(false);
+
+  React.useEffect(() => {
+    // 每次打开网站都显示弹窗（使用sessionStorage确保每个会话显示一次）
+    const hasSeenDialogThisSession = sessionStorage.getItem('anti-resale-dialog-seen');
+    if (!hasSeenDialogThisSession) {
+      setShowAntiResaleDialog(true);
+    }
+  }, []);
+
+  const handleCloseDialog = () => {
+    sessionStorage.setItem('anti-resale-dialog-seen', 'true');
+    setShowAntiResaleDialog(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-psychology-calm via-white to-psychology-warm">
-      {/* 背景装饰 */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-8 h-8 bg-psychology-primary/10 rounded-full"></div>
-        <div className="absolute top-40 right-32 w-12 h-12 bg-psychology-accent/10 rounded-full"></div>
-        <div className="absolute bottom-40 left-1/4 w-6 h-6 bg-psychology-secondary/10 rounded-full"></div>
-        <div className="absolute bottom-32 right-20 w-10 h-10 bg-psychology-primary/5 rounded-full"></div>
-      </div>
+    <>
+      {/* 反倒卖公告弹窗 */}
+      <AlertDialog open={showAntiResaleDialog} onOpenChange={setShowAntiResaleDialog}>
+        <AlertDialogContent className="max-w-md">
+          <AlertDialogHeader>
+            <div className="flex items-center gap-2 mb-2">
+              <AlertCircle className="w-6 h-6 text-red-500" />
+              <AlertDialogTitle className="text-xl text-red-600">重要公告</AlertDialogTitle>
+            </div>
+            <AlertDialogDescription asChild>
+              <div className="space-y-4 text-base leading-relaxed text-foreground">
+                <p className="font-semibold text-red-600">
+                  最近倒卖风气严重，工具为纯免费开放使用，没有授权任何平台任何商家倒卖。
+                </p>
+                <p>
+                  如果您在任何平台（包括但不限于<span className="font-semibold">小红书、闲鱼、淘宝、拼多多、抖音</span>）购买到此网站链接，无论商家标注任何理由，请立刻差评并退款，拒绝倒卖行为！
+                </p>
+                <p className="text-center font-semibold text-lg">
+                  谢谢！！！
+                </p>
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={handleCloseDialog} className="w-full bg-red-600 hover:bg-red-700">
+              我已知晓
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <div className="min-h-screen bg-gradient-to-br from-psychology-calm via-white to-psychology-warm">
+        {/* 背景装饰 */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-20 w-8 h-8 bg-psychology-primary/10 rounded-full"></div>
+          <div className="absolute top-40 right-32 w-12 h-12 bg-psychology-accent/10 rounded-full"></div>
+          <div className="absolute bottom-40 left-1/4 w-6 h-6 bg-psychology-secondary/10 rounded-full"></div>
+          <div className="absolute bottom-32 right-20 w-10 h-10 bg-psychology-primary/5 rounded-full"></div>
+        </div>
 
       <div className="relative z-10">
         {/* 导航栏 */}
@@ -428,6 +484,7 @@ export default function Home() {
           </div>
         </footer>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
