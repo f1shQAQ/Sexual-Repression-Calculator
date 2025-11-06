@@ -8,15 +8,6 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
 import { 
   Brain, 
   Clock, 
@@ -27,62 +18,15 @@ import {
   Heart,
   Zap,
   CheckCircle,
-  Star,
   ArrowRight,
   BookOpen,
   Target,
-  History,
-  AlertCircle
+  History
 } from 'lucide-react';
 
 export default function Home() {
-  const [showAntiResaleDialog, setShowAntiResaleDialog] = React.useState(true);
-
-  const handleCloseDialog = () => {
-    setShowAntiResaleDialog(false);
-  };
-
   return (
     <>
-      {/* 反倒卖公告弹窗 */}
-      <AlertDialog open={showAntiResaleDialog} onOpenChange={setShowAntiResaleDialog}>
-        <AlertDialogContent className="max-w-md">
-          <AlertDialogHeader>
-            <div className="flex items-center gap-2 mb-2">
-              <AlertCircle className="w-6 h-6 text-red-500" />
-              <AlertDialogTitle className="text-xl text-red-600">重要公告</AlertDialogTitle>
-            </div>
-            <AlertDialogDescription asChild>
-              <div className="space-y-4 text-base leading-relaxed text-foreground">
-                <p className="font-semibold text-red-600">
-                  最近倒卖风气严重，工具为纯免费开放使用，没有授权任何平台任何商家倒卖。
-                </p>
-                <p>
-                  如果您在任何平台（包括但不限于<span className="font-semibold">小红书、闲鱼、淘宝、拼多多、抖音</span>）购买到此网站链接，无论商家标注任何理由，请立刻差评并退款，拒绝倒卖行为！
-                </p>
-                <p className="text-center font-semibold text-lg">
-                  谢谢！！！
-                </p>
-              </div>
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-            <Button
-              variant="outline"
-              className="w-full border-orange-500 text-orange-600 hover:bg-orange-50"
-              onClick={() => {
-                window.open('https://kcnyvaj540jn.feishu.cn/share/base/form/shrcnFXbyBDDBdWKbFXj8TGKXme', '_blank');
-              }}
-            >
-              🚨 举报倒卖信息
-            </Button>
-            <AlertDialogAction onClick={handleCloseDialog} className="w-full bg-red-600 hover:bg-red-700">
-              我已知晓
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
       <div className="min-h-screen bg-gradient-to-br from-psychology-calm via-white to-psychology-warm">
         {/* 背景装饰 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
